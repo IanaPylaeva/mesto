@@ -1,0 +1,18 @@
+.profile__add {
+  width: 22px;
+  height: 22px;
+  margin: auto;
+  padding: 0;
+  background-image: url(../../../images/add-plus.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media screen and (max-width: 550px) {
+  .profile__add {
+    width: 16px;
+    height: 16px;
+    margin: auto 132px auto 134px;
+  }
+}

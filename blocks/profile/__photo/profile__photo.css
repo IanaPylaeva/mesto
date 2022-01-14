@@ -1,0 +1,18 @@
+.profile__photo {
+  margin: -3.75px 0 -3.75px -22.5px;
+  width: 168.75px;
+  height: 127.5px;
+  display: flex;
+}
+
+@media screen and (max-width: 700px) {
+  .profile__photo {
+    margin: -3.75px 0 -3.75px -15px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .profile__photo {
+    margin: -3.75px 53.75px 0 59.5px;
+  }
+}
