@@ -1,5 +1,5 @@
 .profile__subtitle {
-  width: 336px;
+  max-width: 336px;
   padding: 0;
   margin: auto 0 0;
   font-weight: normal;

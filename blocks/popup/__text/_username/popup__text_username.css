@@ -1,7 +1,6 @@
 .popup__text_username {
   max-width: 358px;
-  height: 27px;
-  margin: 0 auto 30px auto;
+  margin: 0 auto auto auto;
   font-weight: normal;
   font-size: 14px;
   line-height: 1.214;
@@ -15,11 +14,13 @@
     max-width: 270px;
   }
 }
+
 @media screen and (max-width: 800px) {
   .popup__text_username {
     max-width: 250px;
   }
 }
+
 @media screen and (max-width: 550px) {
   .popup__text_username {
     max-width: 238px;
