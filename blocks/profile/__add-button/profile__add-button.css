@@ -6,6 +6,8 @@
   box-sizing: border-box;
   border-radius: 2px;
   display: flex;
+  cursor: pointer;
+  background-color: #000000;
 }
 .profile__add-button:hover {
   opacity: .6;

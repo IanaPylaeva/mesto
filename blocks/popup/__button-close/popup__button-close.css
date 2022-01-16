@@ -1,0 +1,18 @@
+.popup__button-close {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: -40px -40px auto auto;
+  cursor: pointer;
+}
+.popup__button-close:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__button-close {
+  width: 20px;
+  height: 20px;  
+  margin: -16px 0 auto auto;
+  }
+}

@@ -1,0 +1,15 @@
+.popup__input-container {
+  width: 83.26%;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__input-container {
+    width: 84.39%;
+  }
+}
