@@ -14,7 +14,7 @@ function openPopup() {
 }
 
 function closePopup() {
-  popup.classList.remove('popup_opened'); // убрать класс "popup_opened"
+  popup.classList.remove('popup_opened'); // убрать класс "popup_opened".
 }
 
 function submitPopup(evt) {

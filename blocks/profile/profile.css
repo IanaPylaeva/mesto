@@ -25,3 +25,9 @@
     flex-direction: column;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .profile {
+    height: 286px;
+  }
+}

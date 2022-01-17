@@ -13,6 +13,12 @@
 
 @media screen and (max-width: 550px) {
   .profile__photo {
+    margin: -3.75px auto 0 auto;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .profile__photo {
     margin: -3.75px 53.75px 0 59.5px;
   }
 }

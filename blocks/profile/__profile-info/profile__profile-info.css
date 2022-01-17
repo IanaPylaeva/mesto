@@ -14,11 +14,28 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .profile__profile-info{
+    max-width: 252px;
+    min-height: 54.75px;
+    margin: 22.25px auto 0;
+  }
+}
+
 @media screen and (max-width: 550px) {
+  .profile__profile-info{
+    max-width: 70%;
+}
+
+@media screen and (max-width: 400px) {
+  .profile__profile-info{
+    max-width: 80%;
+}
+
+@media screen and (max-width: 350px) {
   .profile__profile-info{
     max-width: 88.125%;
     min-height: 54px;
-    margin: 22.25px auto 0;
     flex-direction: row;
   }
 }

@@ -1,6 +1,6 @@
 .popup__button-submit {
   width: 83.26%;
-  min-height: 46px;
+  min-height: 50px;
   margin: 48px auto 37px auto;
   background: #000000;
   border-radius: 2px;
@@ -22,5 +22,6 @@
     margin: 45px auto 25px auto;
     font-size: 14px;
     line-height: 1.214;
+    min-height: 46px;
   }
 }
