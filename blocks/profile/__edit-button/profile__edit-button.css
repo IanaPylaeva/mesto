@@ -37,7 +37,7 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
-    margin: 8px auto auto auto;    
+    margin: 8px auto auto 0;    
     background-size: 7.5px;
   }
 }
