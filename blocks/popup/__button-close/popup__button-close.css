@@ -19,10 +19,10 @@
 
 @media screen and (max-width: 550px) {
   .popup__button-close {
-  top: -16px;
-  right: 0;
-  width: 20px;
-  height: 20px;
-  margin: -16px 0 auto auto;
+    top: -16px;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    margin: -16px 0 auto auto;
   }
 }

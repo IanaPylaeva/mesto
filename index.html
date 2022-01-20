@@ -13,19 +13,13 @@
       </header>
       <main class="content">
         <section class="profile">
-          <div class="profile__photo">
-            <img src="./images/photo-kusto.jpg" alt="Фото Жак-Ив-Кусто" class="profile__avatar">
-          </div>
-          <article class="profile__profile-info">
+          <img src="./images/photo-kusto.jpg" alt="Фото Жак-Ив-Кусто" class="profile__avatar">
+          <div class="profile__profile-info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__edit-button">
-              <img src="./images/edit.svg" alt="Редактировать-карандашик" class="profile__edit">
-            </button>
+            <button type="button" class="profile__edit-button"></button>
             <p class="profile__subtitle">Исследователь океана</p>
-          </article>
-          <button type="button" class="profile__add-button">
-            <img src="./images/add-plus.svg" alt="Добавить-плюс" class="profile__add">
-          </button>
+          </div>
+          <button type="button" class="profile__add-button"></button>
         </section>
         <section class="elements">
           <article class="element">
@@ -76,15 +70,17 @@
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
       </footer>
       <section class="popup">
-        <form class="popup__container">
-          <button type="submit" class="popup__button-close"></button>
+        <div class="popup__container">
+          <button type="button" class="popup__button-close"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <div class="popup__input-container">
-            <input type="text" class="popup__text popup__text_username" id="username" placeholder="Имя пользователя">
-            <input type="text" class="popup__text popup__text_about" id="aboutuser" placeholder="О себе">
-          </div>
-          <button type="submit" class="popup__button-submit">Сохранить</button>
-        </form>
+          <form class="popup__form" name="popupform">
+            <div class="popup__input-container">
+              <input type="text" class="popup__text" id="username" name="username" placeholder="Имя пользователя">
+              <input type="text" class="popup__text" id="aboutuser" name="aboutuser" placeholder="О себе">
+            </div>
+            <button type="submit" class="popup__button-submit">Сохранить</button>
+          </form>
+        </div>
       </section>
     </div>
     <script src="./scripts/index.js"></script>

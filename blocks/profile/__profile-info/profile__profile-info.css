@@ -1,24 +1,21 @@
 .profile__profile-info {
   max-width: 336px;
-  min-height: 73px;
   display: flex;
   flex-wrap: wrap;
   padding: 0;
-  margin: 22px auto 25px 3.75px;
+  margin: 22px auto 25px 0;
 }
 
 @media screen and (max-width: 700px) {
   .profile__profile-info{
     max-width: 268.8px;
-    min-height: 58.4px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .profile__profile-info{
     max-width: 252px;
-    min-height: 54.75px;
-    margin: 22.25px auto 0;
+    margin: 26px auto 0;
   }
 }
 
@@ -37,7 +34,6 @@
 @media screen and (max-width: 350px) {
   .profile__profile-info{
     max-width: 88.125%;
-    min-height: 54px;
     flex-direction: row;
   }
 }
