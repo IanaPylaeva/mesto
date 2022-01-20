@@ -8,13 +8,13 @@
 
 @media screen and (max-width: 700px) {
   .profile__profile-info{
-    max-width: 268.8px;
+    max-width: 280px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .profile__profile-info{
-    max-width: 252px;
+    max-width: 268px;
     margin: 26px auto 0;
   }
 }
