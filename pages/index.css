@@ -25,6 +25,7 @@
 @import url(../blocks/element/__mask-group/element__mask-group.css);
 @import url(../blocks/element/__title/element__title.css);
 @import url(../blocks/element/__like/_active/element__like_active.css);
+@import url(../blocks/element/__delete/element__delete.css);
 
 /*блок footer*/
 @import url(../blocks/footer/footer.css);
@@ -40,3 +41,7 @@
 @import url(../blocks/popup/__text/popup__text.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__zoom/popup__zoom.css);
+@import url(../blocks/popup/__caption/popup__caption.css);
+@import url(../blocks/popup/__piccontainer/popup__piccontainer.css);
+@import url(../blocks/popup/_picture/popup_picture.css);
