@@ -1,71 +1,46 @@
-const editPopup = document.getElementById('editpopup');
-const addpopup = document.getElementById('addpopup');
-const picturePopup = document.getElementById('picturepopup');
+const popupEditProfile = document.querySelector('.popup_type_profile');
+const popupAddCard = document.querySelector('.popup_type_card-add');
+const popupPicture = document.querySelector('.popup_type_picture');
 
-const popupContainer = document.getElementById('changepopup');
-const popupPlaceContainer = document.getElementById('placepopup');
-const zoomPicture = document.getElementById('zoompopup');
-const popupCaption = document.getElementById('popupcaption');
+const popupContainer = document.querySelector('.popup__container_type_change');
+const popupPlaceContainer = document.querySelector('.popup__container_type_place');
+const pictureZoom = document.querySelector('.popup__zoom');
+const popupCaption = document.querySelector('.popup__caption');
 
-const addButton = document.querySelector('.profile__add-button');
-const editButton = document.querySelector('.profile__edit-button');
-const editCloseButton = document.getElementById('editclosebutton');
-const placeCloseButton = document.getElementById('placeclosebutton');
-const zoomCloseButton = document.getElementById('zoomclosebutton');
+const buttonAdd = document.querySelector('.profile__add-button');
+const buttonEdit = document.querySelector('.profile__edit-button');
+const buttonCloseEdit = document.querySelector('.popup__button-close_type_edit');
+const buttonClosePlace = document.querySelector('.popup__button-close_type_place');
+const buttonCloseZoom = document.querySelector('.popup__button-close_type_zoom');
 
 const userName = document.querySelector('.profile__title');
 const aboutUser = document.querySelector('.profile__subtitle');
 
-const inputName = document.getElementById('username');
-const inputAbout = document.getElementById('aboutuser');
+const inputName = document.querySelector('.popup__text_type_name');
+const inputAbout = document.querySelector('.popup__text_type_about');
 
-const inputPlaceName = document.getElementById('placename');
-const inputPlaceLink = document.getElementById('placelink');
+const inputPlaceName = document.querySelector('.popup__text_type_place');
+const inputPlaceLink = document.querySelector('.popup__text_type_link');
 
-const elementTemplate = document.querySelector('#element').content;//взяли контент и переложили его в переменную
+const elementTemplate = document.querySelector('#elementtemplate').content;//взяли контент и переложили его в переменную
 const elements = document.querySelector('.elements');
 
 
-//замена 6 карточек из "коробки" при загрузке страницы.
+//замена 6 карточек из "коробки" при загрузке страницы. Общие функции.
 
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-function render() {
-  initialCards.forEach(renderItem); //рендерим разметку (отдельно функция, чтобы переиспользовать).
-};
-
-function renderItem(card) {
+function createCard(card) {
 const cardElement = elementTemplate.querySelector('.element').cloneNode(true);// клонируем содержимое тега template
 cardElement.querySelector('.element__title').textContent = card.name;
-cardElement.querySelector('.element__mask-group').src = card.link;
-cardElement.querySelector('.element__mask-group').alt = card.name;
-elements.append(cardElement);//присоединить элемент template к elements в html
+const cardImage = cardElement.querySelector('.element__mask-group');
+cardImage.src = card.link;
+cardImage.alt = card.name;
 addListeners(cardElement);
+return cardElement;
+};
+
+function render() {
+  initialCards.forEach((card) => {elements.append(createCard(card))
+  });
 };
 
 render();
@@ -83,54 +58,50 @@ function addListeners(el) {
   el.querySelector('.element__mask-group').addEventListener('click', openZoomPopup);
 };
 
+
 //Pop-up форма редактирования профайла.
 
 function openEditPopup() {
   inputName.value = userName.textContent; //взять текст для input из profile.
   inputAbout.value = aboutUser.textContent; //взять текст для input из profile.
-  openPopup(editPopup);
+  openPopup(popupEditProfile);
 };
 
 function closeEditPopup() {
-  closePopup(editPopup);
+  closePopup(popupEditProfile);
 };
 
-function submitPopup(event) {
+function submitEditPopup(event) {
   event.preventDefault(); // отмена стандартной отправки формы.
   userName.textContent = inputName.value; //вставить новые значения в свойства value.
   aboutUser.textContent = inputAbout.value; //вставить новые значения в свойства value.
   closeEditPopup();
 };
 
-editButton.addEventListener('click', openEditPopup);
-editCloseButton.addEventListener('click', closeEditPopup);
-popupContainer.addEventListener('submit', submitPopup);
+buttonEdit.addEventListener('click', openEditPopup);
+buttonCloseEdit.addEventListener('click', closeEditPopup);
+popupContainer.addEventListener('submit', submitEditPopup);
 
 
 //Pop-up форма добавления карточек.
 
 function openAddPopup() {
-  openPopup(addpopup);
+  openPopup(popupAddCard);
 };
 
 function closeAddPopup() {
-  closePopup(addpopup);
+  closePopup(popupAddCard);
 };
 
 function addCardPopup(event) {
   event.preventDefault(); // отмена стандартной отправки формы.
-  const cardElement = elementTemplate.querySelector('.element').cloneNode(true);// клонируем содержимое тега template.
-  cardElement.querySelector('.element__title').textContent = inputPlaceName.value;
-  cardElement.querySelector('.element__mask-group').src = inputPlaceLink.value;
-  cardElement.querySelector('.element__mask-group').alt = inputPlaceName.value;
-  elements.prepend(cardElement);//присоединить элемент template к началу elements в html.
-  addListeners(cardElement);
+  elements.prepend(createCard({name: inputPlaceName.value, link: inputPlaceLink.value}));
   closeAddPopup();
 };
 
-addButton.addEventListener('click', openAddPopup);
-placeCloseButton.addEventListener('click', closeAddPopup);
 popupPlaceContainer.addEventListener('submit', addCardPopup);
+buttonAdd.addEventListener('click', openAddPopup);
+buttonClosePlace.addEventListener('click', closeAddPopup);
 
 
 //Удаление карточки Element при нажатии корзины.
@@ -150,14 +121,14 @@ function likeElement(event) {
 //Zoom картинки pop-up.
 
 function openZoomPopup(event) {
-  openPopup(picturePopup);
-  zoomPicture.src = event.target.src;
-  zoomPicture.alt = event.target.alt;
+  openPopup(popupPicture);
+  pictureZoom.src = event.target.src;
+  pictureZoom.alt = event.target.alt;
   popupCaption.textContent = event.target.alt;
 };
 
 function closeZoomPopup() {
-  closePopup(picturePopup);
+  closePopup(popupPicture);
 };
 
-zoomCloseButton.addEventListener('click', closeZoomPopup);
+buttonCloseZoom.addEventListener('click', closeZoomPopup);

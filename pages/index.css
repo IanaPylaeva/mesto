@@ -44,4 +44,6 @@
 @import url(../blocks/popup/__zoom/popup__zoom.css);
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/popup/__piccontainer/popup__piccontainer.css);
-@import url(../blocks/popup/_picture/popup_picture.css);
+@import url(../blocks/popup/_type/popup_type_card-add.css);
+@import url(../blocks/popup/_type/popup_type_profile.css);
+@import url(../blocks/popup/_type/popup_type_picture.css);
