@@ -1,3 +1,4 @@
+const popup = document.querySelector('.popup');
 const popupEditProfile = document.querySelector('.popup_type_profile');
 const popupAddCard = document.querySelector('.popup_type_card-add');
 const popupPicture = document.querySelector('.popup_type_picture');
@@ -29,13 +30,13 @@ const elements = document.querySelector('.elements');
 //замена 6 карточек из "коробки" при загрузке страницы. Общие функции.
 
 function createCard(card) {
-const cardElement = elementTemplate.querySelector('.element').cloneNode(true);// клонируем содержимое тега template
-cardElement.querySelector('.element__title').textContent = card.name;
-const cardImage = cardElement.querySelector('.element__mask-group');
-cardImage.src = card.link;
-cardImage.alt = card.name;
-addListeners(cardElement);
-return cardElement;
+  const cardElement = elementTemplate.querySelector('.element').cloneNode(true);// клонируем содержимое тега template
+  cardElement.querySelector('.element__title').textContent = card.name;
+  const cardImage = cardElement.querySelector('.element__mask-group');
+  cardImage.src = card.link;
+  cardImage.alt = card.name;
+  addListeners(cardElement);
+  return cardElement;
 };
 
 function render() {
@@ -47,7 +48,10 @@ render();
 
 function openPopup(el) {
   el.classList.add('popup_opened');
+  document.addEventListener('keydown', closeEsc);
+  el.addEventListener('click', closeOverlay);
 };
+
 function closePopup(el) {  
   el.classList.remove('popup_opened'); // убрать класс "popup_opened".
 };
@@ -68,7 +72,7 @@ function openEditPopup() {
 };
 
 function closeEditPopup() {
-  closePopup(popupEditProfile);
+  closePopup(popupEditProfile);  
 };
 
 function submitEditPopup(event) {
@@ -132,3 +136,21 @@ function closeZoomPopup() {
 };
 
 buttonCloseZoom.addEventListener('click', closeZoomPopup);
+
+
+/* Закрытие pop-up при нажатии ESC */
+
+function closeEsc(evt) {
+  if (evt.key === 'Escape') {
+  closePopup(popupAddCard) || closePopup(popupEditProfile) || closePopup(popupPicture);
+}
+};
+
+
+/* Закрытие pop-up кликом на оверлей */
+
+function closeOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target);
+  };
+};
