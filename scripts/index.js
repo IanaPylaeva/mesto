@@ -2,6 +2,7 @@ const popup = document.querySelector('.popup');
 const popupEditProfile = document.querySelector('.popup_type_profile');
 const popupAddCard = document.querySelector('.popup_type_card-add');
 const popupPicture = document.querySelector('.popup_type_picture');
+const popupForms = document.querySelectorAll('.popup__form');
 
 const popupContainer = document.querySelector('.popup__container_type_change');
 const popupPlaceContainer = document.querySelector('.popup__container_type_place');
@@ -54,6 +55,8 @@ function openPopup(el) {
 
 function closePopup(el) {  
   el.classList.remove('popup_opened'); // убрать класс "popup_opened".
+  document.removeEventListener('keydown', closeEsc);
+  el.removeEventListener('click', closeOverlay);
 };
 
 function addListeners(el) {
@@ -68,6 +71,7 @@ function addListeners(el) {
 function openEditPopup() {
   inputName.value = userName.textContent; //взять текст для input из profile.
   inputAbout.value = aboutUser.textContent; //взять текст для input из profile.
+  resetForm();
   openPopup(popupEditProfile);
 };
 
@@ -90,7 +94,8 @@ popupContainer.addEventListener('submit', submitEditPopup);
 //Pop-up форма добавления карточек.
 
 function openAddPopup() {
-  openPopup(popupAddCard);
+  resetForm();
+  openPopup(popupAddCard);  
 };
 
 function closeAddPopup() {
@@ -124,11 +129,11 @@ function likeElement(event) {
 
 //Zoom картинки pop-up.
 
-function openZoomPopup(event) {
-  openPopup(popupPicture);
+function openZoomPopup(event) {  
   pictureZoom.src = event.target.src;
   pictureZoom.alt = event.target.alt;
   popupCaption.textContent = event.target.alt;
+  openPopup(popupPicture);
 };
 
 function closeZoomPopup() {
@@ -142,7 +147,8 @@ buttonCloseZoom.addEventListener('click', closeZoomPopup);
 
 function closeEsc(evt) {
   if (evt.key === 'Escape') {
-  closePopup(popupAddCard) || closePopup(popupEditProfile) || closePopup(popupPicture);
+  const popup = document.querySelector('.popup_opened');
+  closePopup(popup);
 }
 };
 
@@ -153,4 +159,12 @@ function closeOverlay(evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target);
   };
+};
+
+
+/* Очистка формы заполнения */
+function resetForm() {
+  popupForms.forEach(popupForm => {
+    popupForm.reset();
+  });
 };

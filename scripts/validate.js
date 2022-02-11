@@ -25,13 +25,13 @@ const checkInputValidity = ({ inputErrorClass }, form, input) => {
 };
 
 const disableButton = (inactiveButtonClass, button) => {
-  button.setAttribute('disabled', '');
+  button.disabled = true;
   button.classList.add(inactiveButtonClass);
 };
 
 const checkButtonValidity = ({ inactiveButtonClass }, form, button) => {
   if (form.checkValidity()) {
-    button.removeAttribute('disabled');
+    button.disabled = false;
     button.classList.remove(inactiveButtonClass);
   } else {
     disableButton(inactiveButtonClass, button);
