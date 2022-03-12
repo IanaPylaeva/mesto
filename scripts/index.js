@@ -1,13 +1,16 @@
-const popup = document.querySelector('.popup');
+import { initialCards } from './cards.js';
+import { FormValidator } from './FormValidator.js';
+import { Card } from './Card.js';
+import { pictureZoom, popupCaption, openPopup, popupPicture, closePopup } from './Utils.js';
+
 const popupEditProfile = document.querySelector('.popup_type_profile');
 const popupAddCard = document.querySelector('.popup_type_card-add');
-const popupPicture = document.querySelector('.popup_type_picture');
-const popupForms = document.querySelectorAll('.popup__form');
+
+const popupAddCardForm = document.querySelector('.popup__addform');
+const popupEditCardForm = document.querySelector('.popup__editform');
 
 const popupContainer = document.querySelector('.popup__container_type_change');
 const popupPlaceContainer = document.querySelector('.popup__container_type_place');
-const pictureZoom = document.querySelector('.popup__zoom');
-const popupCaption = document.querySelector('.popup__caption');
 
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
@@ -24,59 +27,53 @@ const inputAbout = document.querySelector('.popup__text_type_about');
 const inputPlaceName = document.querySelector('.popup__text_type_place');
 const inputPlaceLink = document.querySelector('.popup__text_type_link');
 
-const elementTemplate = document.querySelector('#elementtemplate').content;//взяли контент и переложили его в переменную
 const elements = document.querySelector('.elements');
 
 
-//замена 6 карточек из "коробки" при загрузке страницы. Общие функции.
+/* Проект 7 FormValidator */
 
-function createCard(card) {
-  const cardElement = elementTemplate.querySelector('.element').cloneNode(true);// клонируем содержимое тега template
-  cardElement.querySelector('.element__title').textContent = card.name;
-  const cardImage = cardElement.querySelector('.element__mask-group');
-  cardImage.src = card.link;
-  cardImage.alt = card.name;
-  addListeners(cardElement);
-  return cardElement;
-};
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__text', //форма инпута
+  submitButtonSelector: '.popup__button-submit',
+  inactiveButtonClass: 'popup__button-submit_disabled',
+  inputErrorClass: 'popup__text_type_error', //подчеркивание красным
+  errorClass: 'popup__text-error' //красный текст ошибки span
+}
+
+const editProfileValidator = new FormValidator(validationConfig, popupEditCardForm);
+const addCardValidator = new FormValidator(validationConfig, popupAddCardForm);
+
+editProfileValidator.enableValidation();
+addCardValidator.enableValidation();
+
+
+/* Проект 7 Card */
+
+function generateCard(data) {
+  const card = new Card(data, '#elementtemplate', openZoomPopup);
+  return card.createCard();
+}
 
 function render() {
-  initialCards.forEach((card) => {elements.append(createCard(card))
+    initialCards.forEach((data) => {elements.append(generateCard(data))
   });
+
 };
 
 render();
-
-function openPopup(el) {
-  el.classList.add('popup_opened');
-  document.addEventListener('keydown', closeEsc);
-  el.addEventListener('click', closeOverlay);
-};
-
-function closePopup(el) {  
-  el.classList.remove('popup_opened'); // убрать класс "popup_opened".
-  document.removeEventListener('keydown', closeEsc);
-  el.removeEventListener('click', closeOverlay);
-};
-
-function addListeners(el) {
-  el.querySelector('.element__delete').addEventListener('click', deleteElement);
-  el.querySelector('.element__like').addEventListener('click', likeElement);
-  el.querySelector('.element__mask-group').addEventListener('click', openZoomPopup);
-};
-
 
 //Pop-up форма редактирования профайла.
 
 function openEditPopup() {
   inputName.value = userName.textContent; //взять текст для input из profile.
   inputAbout.value = aboutUser.textContent; //взять текст для input из profile.
-  resetForm();
   openPopup(popupEditProfile);
+  editProfileValidator.resetErrors();
 };
 
 function closeEditPopup() {
-  closePopup(popupEditProfile);  
+   closePopup(popupEditProfile); 
 };
 
 function submitEditPopup(event) {
@@ -90,12 +87,11 @@ buttonEdit.addEventListener('click', openEditPopup);
 buttonCloseEdit.addEventListener('click', closeEditPopup);
 popupContainer.addEventListener('submit', submitEditPopup);
 
-
 //Pop-up форма добавления карточек.
 
 function openAddPopup() {
-  resetForm();
-  openPopup(popupAddCard);  
+  openPopup(popupAddCard);
+  addCardValidator.resetErrors();  
 };
 
 function closeAddPopup() {
@@ -104,28 +100,13 @@ function closeAddPopup() {
 
 function addCardPopup(event) {
   event.preventDefault(); // отмена стандартной отправки формы.
-  elements.prepend(createCard({name: inputPlaceName.value, link: inputPlaceLink.value}));
+  elements.prepend(generateCard({name: inputPlaceName.value, link: inputPlaceLink.value}));
   closeAddPopup();
 };
 
 popupPlaceContainer.addEventListener('submit', addCardPopup);
 buttonAdd.addEventListener('click', openAddPopup);
 buttonClosePlace.addEventListener('click', closeAddPopup);
-
-
-//Удаление карточки Element при нажатии корзины.
-
-function deleteElement(event) {
-  event.target.closest('.element').remove();
-};
-
-
-//Лайки.
-
-function likeElement(event) {
-  event.target.closest('.element__like').classList.toggle('element__like_active');
-};
-
 
 //Zoom картинки pop-up.
 
@@ -141,30 +122,3 @@ function closeZoomPopup() {
 };
 
 buttonCloseZoom.addEventListener('click', closeZoomPopup);
-
-
-/* Закрытие pop-up при нажатии ESC */
-
-function closeEsc(evt) {
-  if (evt.key === 'Escape') {
-  const popup = document.querySelector('.popup_opened');
-  closePopup(popup);
-}
-};
-
-
-/* Закрытие pop-up кликом на оверлей */
-
-function closeOverlay(evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.target);
-  };
-};
-
-
-/* Очистка формы заполнения */
-function resetForm() {
-  popupForms.forEach(popupForm => {
-    popupForm.reset();
-  });
-};
