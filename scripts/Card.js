@@ -6,8 +6,12 @@ export class Card {
     this._openZoomPopup = openZoomPopup;
   }
 
-  createCard() {
+  _getTemplate() {
     this._cardElement = this._elementTemplate.querySelector('.element').cloneNode(true);// клонируем содержимое тега template
+  };
+
+  createCard() {
+    this._getTemplate();
     this._cardElement.querySelector('.element__title').textContent = this._name;
     const cardImage = this._cardElement.querySelector('.element__mask-group');
     cardImage.src = this._link;

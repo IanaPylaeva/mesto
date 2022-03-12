@@ -48,65 +48,42 @@ editProfileValidator.enableValidation();
 addCardValidator.enableValidation();
 
 
-/* Проект 7 Card */
-
-function generateCard(data) {
-  const card = new Card(data, '#elementtemplate', openZoomPopup);
-  return card.createCard();
-}
-
-function render() {
-    initialCards.forEach((data) => {elements.append(generateCard(data))
-  });
-
-};
-
-render();
-
 //Pop-up форма редактирования профайла.
 
 function openEditPopup() {
+  editProfileValidator.resetErrors();
   inputName.value = userName.textContent; //взять текст для input из profile.
   inputAbout.value = aboutUser.textContent; //взять текст для input из profile.
   openPopup(popupEditProfile);
-  editProfileValidator.resetErrors();
-};
-
-function closeEditPopup() {
-   closePopup(popupEditProfile); 
 };
 
 function submitEditPopup(event) {
   event.preventDefault(); // отмена стандартной отправки формы.
   userName.textContent = inputName.value; //вставить новые значения в свойства value.
   aboutUser.textContent = inputAbout.value; //вставить новые значения в свойства value.
-  closeEditPopup();
+  closePopup(popupEditProfile);  
 };
 
 buttonEdit.addEventListener('click', openEditPopup);
-buttonCloseEdit.addEventListener('click', closeEditPopup);
+buttonCloseEdit.addEventListener('click', () => closePopup(popupEditProfile));
 popupContainer.addEventListener('submit', submitEditPopup);
 
 //Pop-up форма добавления карточек.
 
 function openAddPopup() {
+  addCardValidator.resetErrors();
   openPopup(popupAddCard);
-  addCardValidator.resetErrors();  
-};
-
-function closeAddPopup() {
-  closePopup(popupAddCard);
 };
 
 function addCardPopup(event) {
   event.preventDefault(); // отмена стандартной отправки формы.
   elements.prepend(generateCard({name: inputPlaceName.value, link: inputPlaceLink.value}));
-  closeAddPopup();
+  closePopup(popupAddCard);  
 };
 
 popupPlaceContainer.addEventListener('submit', addCardPopup);
 buttonAdd.addEventListener('click', openAddPopup);
-buttonClosePlace.addEventListener('click', closeAddPopup);
+buttonClosePlace.addEventListener('click', () => closePopup(popupAddCard)); 
 
 //Zoom картинки pop-up.
 
@@ -117,8 +94,18 @@ function openZoomPopup(event) {
   openPopup(popupPicture);
 };
 
-function closeZoomPopup() {
-  closePopup(popupPicture);
+buttonCloseZoom.addEventListener('click', () => closePopup(popupPicture));
+
+/* Проект 7 Card */
+
+function generateCard(data) {
+  const card = new Card(data, '#elementtemplate', openZoomPopup);
+  return card.createCard();
 };
 
-buttonCloseZoom.addEventListener('click', closeZoomPopup);
+function render() {
+    initialCards.forEach((data) => {elements.append(generateCard(data))
+  });
+};
+
+render();
