@@ -20,7 +20,7 @@
 
 @media screen and (max-width: 650px) {
   .elements {
-    width: 88.125%;    
+    width: 88.125%;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 361px);
     gap: 20px;
