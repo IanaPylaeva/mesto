@@ -1,13 +1,9 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(settings, form) {
     this._settings = settings;
     this._form = form;
-  }
-
-  _formSubmit(event) {
-    event.preventDefault();
   };
-    
+  
   _showInputError(input) {
     this._errorClass = this._form.querySelector(`.${input.id}-error`); //нашли span
     this._errorClass.textContent = input.validationMessage; //выводится сообщение об ошибке span
@@ -43,8 +39,6 @@ export class FormValidator {
   };
   
   enableValidation() {
-    this._form.addEventListener('submit', (event) => this._formSubmit(event));
-
     this._inputs = this._form.querySelectorAll(this._settings.inputSelector);
     this._button = this._form.querySelector(this._settings.submitButtonSelector);
 
@@ -67,5 +61,4 @@ export class FormValidator {
     });
     this.disableButton();
   };
- 
-}
+};
