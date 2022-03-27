@@ -28,11 +28,15 @@ export default class FormValidator {
     this._button.disabled = true;
     this._button.classList.add(this._settings.inactiveButtonClass);
   };
+
+  activateButton() {
+    this._button.disabled = false;
+    this._button.classList.remove(this._settings.inactiveButtonClass);
+  }
   
   _checkButtonValidity() {
     if (this._form.checkValidity()) {
-      this._button.disabled = false;
-      this._button.classList.remove(this._settings.inactiveButtonClass);
+      this.activateButton();
     } else {
       this.disableButton();
     };

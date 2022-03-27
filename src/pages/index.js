@@ -101,6 +101,7 @@ const setProfileInputs = (info) => {
 
 buttonEdit.addEventListener('click', () => {
   editProfileValidator.resetErrors();
+  editProfileValidator.activateButton();
   const currentUserInfo = profile.getUserInfo();
   setProfileInputs(currentUserInfo);
   popupEditForm.open();
@@ -109,6 +110,7 @@ buttonEdit.addEventListener('click', () => {
 buttonAdd.addEventListener('click', () => {
   popupAddForm.open();
   addCardValidator.resetErrors();
+  addCardValidator.disableButton();
 });
 
 
