@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Место Россия</title>
   </head>
   <body>
@@ -13,7 +12,10 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img src="<%=require('./images/photo-kusto.jpg')%>" alt="Фото Жак-Ив-Кусто" class="profile__avatar">
+          <div class="profile__grid-container">
+            <img src="<%=require('./images/photo-kusto.jpg')%>" alt="Добавьте фото" class="profile__avatar">
+            <button type="button" aria-label="Редактировать аватар" class="profile__edit-avatar"></button>
+          </div>
           <div class="profile__profile-info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button type="button" aria-label="Редактировать" class="profile__edit-button"></button>
@@ -57,6 +59,28 @@
           </form>
         </div>
       </section>
+      <section class="popup popup_type_update-avatar">
+        <div class="popup__container popup__container_type_avatar">
+          <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_avatar"></button>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <form class="popup__form popup__avatarform" name="popupform" novalidate>
+            <div class="popup__input-container">
+              <input id="avatarlink-input" type="text" class="popup__text popup__text_type_avatar" name="link" placeholder="Ссылка на изображение" required minlength="2" maxlength="30">
+              <span class="popup__text-error avatarlink-input-error"></span>
+            </div>
+            <button type="submit" class="popup__button-submit">Сохранить</button>
+          </form>
+        </div>
+      </section>      
+      <section class="popup popup_type_deleteask">
+        <div class="popup__container popup__container_type_deletesure">
+          <button type="button" aria-label="Закрыть" class="popup__button-close popup__button-close_type_deletesure"></button>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <form class="popup__form popup__deletesureform" name="popupform" novalidate>
+            <button type="submit" class="popup__button-submit">Да</button>
+          </form>
+        </div>
+      </section>
       <section class="popup popup_type_picture">
         <article class="popup__piccontainer">
           <img src="#" alt="#" class="popup__zoom">
@@ -70,7 +94,10 @@
           <button type="button" aria-label="Удалить" class="element__delete"></button>
           <figcaption class="element__group">
             <h2 class="element__title"></h2>
-            <button type="button" aria-label="Лайк" class="element__like"></button>
+            <div class="element__likes-counter">
+              <button type="button" aria-label="Лайк" class="element__like"></button>
+              <p class="element__likes-number">0</p>
+            </div>
           </figcaption>
         </figure>
       </template>

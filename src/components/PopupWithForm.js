@@ -25,4 +25,14 @@ export default class PopupWithForm extends Popup {
       this.close();
     });
   };
+
+  
+  renderLoading(isLoading) {
+    this._buttonSubmit = this._popup.querySelector('.popup__button-submit');
+    if(isLoading) {
+      this._buttonSubmit.textContent = 'Сохранение...';
+    } else {
+      this._buttonSubmit.textContent = 'Сохранить';
+    }
+  }
 };

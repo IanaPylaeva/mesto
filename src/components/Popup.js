@@ -37,4 +37,5 @@ export default class Popup {
     this._popup.querySelector('.popup__button-close').removeEventListener('click', () => this.close());
     document.removeEventListener('keydown', this._handleEscClose);
   };
+
 };
