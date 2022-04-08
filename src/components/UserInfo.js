@@ -15,8 +15,8 @@ export default class UserInfo {
   };
 
   setUserInfo(formValues) {
-    this._name.textContent = formValues.username;
-    this._about.textContent = formValues.aboutuser;
+    this._name.textContent = formValues.name;
+    this._about.textContent = formValues.about;
   };
 
   setUserAvatar(formValues) {

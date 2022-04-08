@@ -19,7 +19,7 @@ export default class Api {
   /* Получить карточки с сервера */
 
   getInitialCards() {
-    return fetch('${this._serverUrl}/cards', {
+    return fetch(`${this._serverUrl}/cards`, {
       method: 'GET',
       headers: this._headers,
     })
@@ -29,8 +29,8 @@ export default class Api {
 
   /* Получить информацию о пользователе с сервера */
 
-  getUserInfo() {
-    return fetch('${this._serverUrl}/users/me', {
+  getUserData() {
+    return fetch(`${this._serverUrl}/users/me`, {
       method: 'GET',
       headers: this._headers,
     })
@@ -40,13 +40,13 @@ export default class Api {
 
   /* Установить обновленные данные пользователя на сервер */
 
-  patchUserInfo() {
-    return fetch('${this._serverUrl}/users/me', {
+  patchUserInfo(data) {
+    return fetch(`${this._serverUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        about: data.about
+        about: data.about,
       })
     })
     .then(this._checkCorrectness);
@@ -55,8 +55,8 @@ export default class Api {
 
   /* Установить аватар пользователя на сервере */
 
-  patchUserAvatar() {
-    return fetch('${this._serverUrl}/users/me/avatar', {
+  patchUserAvatar(data) {
+    return fetch(`${this._serverUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -70,12 +70,12 @@ export default class Api {
   /* Отправить данные новой карточки на сервер */
 
   postCard(data) {
-    return fetch('${this._serverUrl}/cards', {
+    return fetch(`${this._serverUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
         name: data.name,
-        link: data.link
+        link: data.link,
       })
     })
     .then(this._checkCorrectness);
@@ -84,10 +84,10 @@ export default class Api {
 
   /* Удалить карточку с сервера */
 
-  deleteCard(cardId) {
-    return fetch('${this._serverUrl}/cards/${cardId}', {
+  deleteCard(id) {
+    return fetch(`${this._serverUrl}/cards/${id}`, {
     method: 'DELETE',
-    headers: this._headers
+    headers: this._headers,
     })
     .then(this._checkCorrectness);
   };
@@ -95,10 +95,10 @@ export default class Api {
 
   /* Поставить лайк */
 
-  putLike(cardId) {
-    return fetch('${this._serverUrl}/cards/${cardId}/likes', {
+  putLike(id) {
+    return fetch(`${this._serverUrl}/cards/${id}/likes`, {
     method: 'PUT',
-    headers: this._headers
+    headers: this._headers,
     })
     .then(this._checkCorrectness);
   };
@@ -106,10 +106,10 @@ export default class Api {
 
   /* Удалить лайк */
 
-  deleteLike(cardId) {
-    return fetch('${this._serverUrl}/cards/${cardId}/likes', {
+  deleteLike(id) {
+    return fetch(`${this._serverUrl}/cards/${id}/likes`, {
     method: 'DELETE',
-    headers: this._headers
+    headers: this._headers,
     })
     .then(this._checkCorrectness);
   };

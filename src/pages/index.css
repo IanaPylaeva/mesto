@@ -17,7 +17,6 @@
 @import url(../blocks/profile/__edit-avatar/profile__edit-avatar.css);
 @import url(../blocks/profile/__grid-container/profile__grid-container.css);
 
-
 /*блок elements*/
 @import url(../blocks/elements/elements.css);
 
@@ -31,7 +30,6 @@
 @import url(../blocks/element/__delete/element__delete.css);
 @import url(../blocks/element/__likes-number/element__likes-number.css);
 @import url(../blocks/element/__likes-counter/element__likes-counter.css);
-@import url(../blocks/element/__delete/_show/element__delete_show.css);
 
 /*блок footer*/
 @import url(../blocks/footer/footer.css);
@@ -55,7 +53,7 @@
 @import url(../blocks/popup/_type/popup_type_picture.css);
 @import url(../blocks/popup/_type/popup_type_update-avatar.css);
 @import url(../blocks/popup/_type/popup_type_deleteask.css);
-
 @import url(../blocks/popup/__text/_type/popup__text_type_error.css);
 @import url(../blocks/popup/__text-error/popup__text-error.css);
 @import url(../blocks/popup/__button-submit/_disabled/popup__button-submit_disabled.css);
+@import url(../blocks/popup/__title-deleteask/popup__title-deleteask.css);

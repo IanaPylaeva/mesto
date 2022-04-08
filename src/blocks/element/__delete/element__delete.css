@@ -1,5 +1,5 @@
 .element__delete {
-  display: none;
+  display: block;
   width: 18px;
   height: 19px;
   background-image: url(../../../images/delete.svg);
