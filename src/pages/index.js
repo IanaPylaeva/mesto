@@ -246,3 +246,4 @@ popupZoom.setEventsListeners();
 popupAddForm.setEventListeners();
 popupEditForm.setEventListeners();
 popupAvatarForm.setEventListeners();
+popupAskerDeleteForm.setEventsListeners();
