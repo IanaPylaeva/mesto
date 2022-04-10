@@ -109,10 +109,7 @@ const createCard = (data) => {
       popupAskerDeleteForm.open();
       popupAskerDeleteForm.setSubmitAction(() => {
         api.deleteCard(id)
-          .then(res => {
-            console.log(res);
-            card.removeCard();
-          })
+          .then(card.removeCard())
           .catch((err) => {
             console.log(`${err}`);
           })
@@ -150,7 +147,7 @@ const popupZoom = new PopupWithImage('.popup_type_picture');
 /* Попап согласие на удаление карточки PopupWithConfirmation */
 
 const popupAskerDeleteForm = new PopupWithConfirmation('.popup_type_deleteask');
-popupAskerDeleteForm.setEventsListeners();
+
 
 
 /* Форма добавления новой карточки ADD */
@@ -164,6 +161,7 @@ const popupAddForm = new PopupWithForm(
         .then((data) => {
           const newCard = createCard(data);
           cardList.addNewItem(newCard);
+          popupAddForm.close();
         })        
         .catch((err) => {
           console.error(err);
@@ -186,6 +184,7 @@ const popupEditForm = new PopupWithForm(
       api.patchUserInfo(data)
         .then((res) => {
           profile.setUserInfo(res);
+          popupEditForm.close();
         })
         .catch((err) => {
           console.error(err);
@@ -208,6 +207,7 @@ const popupAvatarForm = new PopupWithForm(
       api.patchUserAvatar(data)
         .then((res) => {
           profile.setUserAvatar(res);
+          popupAvatarForm.close();
         })
         .catch((err) => {
           console.error(err);

@@ -17,4 +17,5 @@ export default class PopupWithConfirmation extends Popup {
       this.close();
     });
   }
+
 }

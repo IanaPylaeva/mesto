@@ -40,7 +40,7 @@
               <input id="about-input" type="text" class="popup__text popup__text_type_about" name="about" placeholder="О себе" required minlength="2" maxlength="200">
               <span class="popup__text-error about-input-error"></span>
             </div>
-            <button type="submit" class="popup__button-submit">Сохранить</button>
+            <button type="submit" class="popup__button-submit" data-value="Сохранить">Сохранить</button>
           </form>
         </div>
       </section>
@@ -55,7 +55,7 @@
               <input id="placelink-input" type="url" class="popup__text popup__text_type_link" name="link" placeholder="Ссылка на картинку" required>
               <span class="popup__text-error placelink-input-error"></span>
             </div>
-            <button type="submit" class="popup__button-submit">Создать</button>
+            <button type="submit" class="popup__button-submit" data-value="Создать">Создать</button>
           </form>
         </div>
       </section>
@@ -65,10 +65,10 @@
           <h2 class="popup__title">Обновить аватар</h2>
           <form class="popup__form popup__avatarform" name="popupform" novalidate>
             <div class="popup__input-container">
-              <input id="avatarlink-input" type="text" class="popup__text popup__text_type_avatar" name="link" placeholder="Ссылка на изображение" required>
+              <input id="avatarlink-input" type="url" class="popup__text popup__text_type_avatar" name="link" placeholder="Ссылка на изображение" required>
               <span class="popup__text-error avatarlink-input-error"></span>
             </div>
-            <button type="submit" class="popup__button-submit">Сохранить</button>
+            <button type="submit" class="popup__button-submit" data-value="Сохранить">Сохранить</button>
           </form>
         </div>
       </section>      

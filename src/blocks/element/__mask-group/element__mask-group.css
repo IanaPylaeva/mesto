@@ -5,4 +5,11 @@
   padding: 0;
   display: flex;
   border-radius: 10px 10px 0 0;
+  object-fit: cover;
+  cursor: pointer;
+  transition: opacity .3s ease;
+}
+
+.element__mask-group:hover {
+  opacity: 0.8;
 }
